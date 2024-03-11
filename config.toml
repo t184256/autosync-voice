@@ -1,0 +1,29 @@
+[storage]
+raw = '/mnt/sync/voice-raw'  # where to import it to
+meta = '/mnt/sync/voice-raw/.meta'
+processed = '/mnt/sync/voice/unsorted'  # where to put processed files
+processed_list = '/mnt/sync/voice/unsorted/.list'  # track what's processed
+# example paths: voice-raw/2024-02-11/almond/190412.flac
+# example paths: voice/unsorted/2024-02-11/tx660-tx650/1904n1-1905.d20.opus
+
+[devices.tx650]
+glob = 'VOICE/FOLDER0*/*.WAV'
+prefer_channel = 'right'
+  [devices.tx650.drive]
+  # should be enough to detect the right thing
+  Id = 'SONY-IC-RECORDER-01078CAFCF2B'
+  # just to be super-specific
+  CanPowerOff = true
+  ConnectionBus = 'usb'
+  Ejectable = true
+  Model = 'IC RECORDER'
+  Removable = true
+  Revision = '3.00'
+  Serial = '01078CAFCF2B'
+  Vendor = 'SONY'
+
+[devices.tx660]
+glob = 'REC_FILE/FOLDER01/*.wav'
+prefer_channel = 'left'
+# should be unique enough
+drive.Id = 'SONY-IC-RECORDER-180E94E1007818'

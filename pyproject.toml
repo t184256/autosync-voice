@@ -1,0 +1,59 @@
+[project]
+name = "autosync_voice"
+version = "0.0.1"
+authors = [
+  { name="Alexander Sosedkin", email="monk@unboiled.info" },
+]
+description = "Import, synchronize, merge and de-noise almost-simultaneous voice recordings."
+urls.homepage = "https://github.com/t184256/autosync-voice"
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+]
+requires-python = ">=3.11"
+dependencies = [
+  "click", "click-default-group",
+  "structlog",
+  "dasbus",
+  "ffmpeg-python",
+  "numpy", "scipy",
+]
+optional-dependencies.improve = [
+  "deepfilternet",  # sadly, doesn't use its python API, uses cmdline
+]
+optional-dependencies.test = [
+  "pytest",
+  "mypy", "pytest-mypy",
+  "ruff",
+]
+
+[tool.pytest.ini_options]
+addopts = "--mypy --doctest-modules"
+
+[project.scripts]
+autosync_voice = "autosync_voice.app:cli"
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+line-length = 79
+preview = true
+lint.select = [ "ALL" ]
+lint.ignore = [
+  "S101",  # assert, I am too lazy for proper error handling
+  "D105",  # undocumented-magic-method
+  "D203",  # one-blank-line-before-class
+  "D213",  # multi-line-summary-second-line
+]
+lint.per-file-ignores."tests/**" = [
+  "INP001",  # implicit-namespace-package
+  "S101",  # assert
+]
+lint.flake8-quotes.inline-quotes = "single"
+lint.flake8-quotes.multiline-quotes = "single"
+lint.flake8-copyright.notice-rgx = '# SPDX-FileCopyrightText: 2024 Alexander Sosedkin <monk@unboiled.info>\n# SPDX-License-Identifier: GPL-3.0\n'
+format.quote-style = "single"
+format.preview = true
