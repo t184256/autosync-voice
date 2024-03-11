@@ -17,7 +17,7 @@ import ffmpeg  # type: ignore[import]
 def _improve_48k(out: Path, inp: Path, tmp_dir: Path) -> None:
     tmp = tmp_dir / 'tmp.wav'
     shutil.copy(inp, tmp)  # it's in-place now for some reason
-    args = ['-o', str(tmp_dir), '--pf', '-D', '-a', '10', str(tmp)]
+    args = ['-o', str(tmp_dir), '--pf', '-D', '-a', '20', str(tmp)]
     subprocess.run(['deepfilternet', *args], check=True)  # noqa: S603, S607
     tmp.rename(out)
 
