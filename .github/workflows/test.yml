@@ -24,6 +24,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - run: apt -y install python-gi
       - run: pip3 install -U setuptools pip
       - run: pip3 install .[test]
       - run: pytest -vvv
