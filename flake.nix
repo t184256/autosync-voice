@@ -110,7 +110,7 @@
               };
               configFile = lib.mkOption {
                 description = "Configuration file to use.";
-                type = lib.types.str;
+                type = lib.types.path or lib.types.derivation;
                 default = "/etc/autosync-voice/config.toml";
               };
               user = lib.mkOption {
