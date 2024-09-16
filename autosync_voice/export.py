@@ -8,7 +8,7 @@
 
 from pathlib import Path
 
-import ffmpeg  # type: ignore[import]
+import ffmpeg  # type: ignore[import-untyped]
 
 
 def export(out: Path, inp: Path) -> None:

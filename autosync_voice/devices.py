@@ -9,7 +9,7 @@ import typing
 from pathlib import Path
 
 import click
-import dasbus.connection  # type: ignore[import]
+import dasbus.connection  # type: ignore[import-untyped]
 import structlog
 
 if typing:
@@ -99,7 +99,7 @@ class Device:
                 log.debug('repairing...', blockdev=blockdev, clean=clean)
                 clean = dev.Repair({})
             log.debug('unmounted', blockdev=blockdev)
-            click.echo(f'{self.name} unmounted {"" if clean else "un"}cleanly')
+            click.echo(f'{self.name} unmounted {'' if clean else 'un'}cleanly')
 
     def _find_blockdev(
         self,

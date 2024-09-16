@@ -28,7 +28,10 @@
           src = ./.;
           format = "pyproject";
           propagatedBuildInputs = deps python3Packages;
-          nativeBuildInputs = [ python3Packages.setuptools ];
+          nativeBuildInputs = [
+            python3Packages.setuptools
+            pkgs.wrapGAppsNoGuiHook
+          ];
           checkInputs = tools pkgs python3Packages;
           postInstall = "mv $out/bin/autosync_voice $out/bin/autosync-voice";
         };
@@ -49,7 +52,7 @@
       flake-utils.lib.eachDefaultSystem (system:
         let
           pkgs = import nixpkgs { inherit system; overlays = [ overlay-all ]; };
-          defaultPython3Packages = pkgs.python311Packages;  # force 3.11
+          defaultPython3Packages = pkgs.python312Packages;  # force 3.12
 
           deepfilternet-bin = pkgs.stdenv.mkDerivation {
             # maturin + git Cargo.lock deps = packaging problems
@@ -67,6 +70,9 @@
           };
 
           autosync-voice = defaultPython3Packages.autosync-voice;
+          gi_path = pkgs.lib.makeSearchPath "lib/girepository-1.0" [
+            pkgs.glib.out
+          ];
           app = flake-utils.lib.mkApp {
             drv = autosync-voice;
             exePath = "/bin/autosync-voice";
@@ -79,6 +85,7 @@
               deepfilternet-bin
             ];
             shellHook = ''
+              export GI_TYPELIB_PATH=${gi_path}
               export PYTHONASYNCIODEBUG=1 PYTHONWARNINGS=error
             '';
           };

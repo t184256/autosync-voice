@@ -12,7 +12,7 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
   "click", "click-default-group",
   "structlog",
@@ -43,10 +43,12 @@ line-length = 79
 preview = true
 lint.select = [ "ALL" ]
 lint.ignore = [
-  "S101",  # assert, I am too lazy for proper error handling
-  "D105",  # undocumented-magic-method
-  "D203",  # one-blank-line-before-class
-  "D213",  # multi-line-summary-second-line
+  "D105",     # undocumented-magic-method
+  "D203",     # one-blank-line-before-class
+  "D213",     # multi-line-summary-second-line
+  "DOC201",   # docstring-missing-returns, not a fan for small programs
+  "PLW1514",  # unspecified-encoding, I don't want it to be that portable
+  "S101",     # assert, I am too lazy for proper error handling
 ]
 lint.per-file-ignores."tests/**" = [
   "INP001",  # implicit-namespace-package

@@ -11,7 +11,7 @@ import subprocess  # noqa: S404
 import tempfile
 from pathlib import Path
 
-import ffmpeg  # type: ignore[import]
+import ffmpeg  # type: ignore[import-untyped]
 
 
 def _improve_48k(out: Path, inp: Path, tmp_dir: Path) -> None:

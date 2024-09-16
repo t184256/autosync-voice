@@ -10,10 +10,10 @@ import tempfile
 from pathlib import Path
 
 import click
-import ffmpeg  # type: ignore[import]
+import ffmpeg  # type: ignore[import-untyped]
 import numpy as np
-import scipy.fft  # type: ignore[import]
-import scipy.io  # type: ignore[import]
+import scipy.fft  # type: ignore[import-untyped]
+import scipy.io  # type: ignore[import-untyped]
 import structlog
 
 SYNC_LEN = 30  # sec

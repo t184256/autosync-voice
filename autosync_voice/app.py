@@ -11,7 +11,7 @@ from pathlib import Path
 
 import click
 import structlog
-from click_default_group import DefaultGroup  # type: ignore[import]
+from click_default_group import DefaultGroup  # type: ignore[import-untyped]
 
 import autosync_voice.devices
 import autosync_voice.export

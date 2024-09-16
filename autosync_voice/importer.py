@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 import click
-import ffmpeg  # type: ignore[import]
+import ffmpeg  # type: ignore[import-untyped]
 import structlog
 
 
