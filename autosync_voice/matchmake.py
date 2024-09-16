@@ -16,7 +16,9 @@ if typing.TYPE_CHECKING:
 
 def approx_time_in_minutes(name: str) -> int | None:
     """Deduce a start time scalar from a filename, unit is minutes."""
-    if m := re.match(r'(\d{2})(\d{2}).*', name):
+    if m := re.match(r'20\d{2}[._-]?[01]\d.*', name):  # year and month, skip
+        return None
+    if m := re.match(r'(\d{2})[._-]?(\d{2}).*', name):
         hh, mm = m.groups()
         return int(hh) * 60 + int(mm)
     return None
