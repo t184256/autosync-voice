@@ -26,7 +26,7 @@ class DeviceConfig(typing.TypedDict):
     """Type definition for a device section of a config."""
 
     glob: str
-    prefer_channel: typing.Literal['left', 'right']  # no_preference is implied
+    prefer_channel: typing.Literal['left', 'no_preference', 'right']
     drive: dict[str, str | bool]
 
 
@@ -42,6 +42,7 @@ def validate(config: Config) -> Config:
         assert '*' in device_config['glob'] or '?' in device_config['glob']
         prefer_channel = device_config.get('prefer_channel', 'no_preference')
         assert prefer_channel in {'left', 'no_preference', 'right'}
+        device_config['prefer_channel'] = prefer_channel
         assert 'drive' in device_config
         assert device_config['drive']
     return config
