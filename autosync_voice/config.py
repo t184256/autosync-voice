@@ -26,7 +26,7 @@ class DeviceConfig(typing.TypedDict):
     """Type definition for a device section of a config."""
 
     glob: str
-    prefer_channel: typing.Literal['left', 'right']
+    prefer_channel: typing.Literal['left', 'right']  # no_preference is implied
     drive: dict[str, str | bool]
 
 
