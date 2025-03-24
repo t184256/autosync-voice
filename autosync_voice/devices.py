@@ -74,8 +74,7 @@ class Device:
         ondev = tomllib.loads((mountpoint / 'autosync-voice.toml').read_text())
         assert ondev.get('device_name') == self.name
         click.echo(
-            f'{self.name} has a '
-            f'matching `{mountpoint}/autosync-voice.toml`',
+            f'{self.name} has a matching `{mountpoint}/autosync-voice.toml`',
         )
         return mountpoint
 
@@ -99,7 +98,7 @@ class Device:
                 log.debug('repairing...', blockdev=blockdev, clean=clean)
                 clean = dev.Repair({})
             log.debug('unmounted', blockdev=blockdev)
-            click.echo(f'{self.name} unmounted {'' if clean else 'un'}cleanly')
+            click.echo(f'{self.name} unmounted {"" if clean else "un"}cleanly')
 
     def _find_blockdev(
         self,
@@ -115,7 +114,7 @@ class Device:
                     'org.freedesktop.UDisks2.Block': {'Drive': d},
                 } if d.unpack() == self.drive:
                     log.debug('found blockdev', dev=self.name, blockdev=block)
-                    return typing.cast(str, block)
+                    return typing.cast('str', block)
         return None
 
     @staticmethod
@@ -128,7 +127,7 @@ class Device:
         assert 'MountPoints' in fs
         match list(fs['MountPoints']):
             case [[*pre, 0]]:
-                s = bytes(pre).decode()  # type: ignore[has-type]
+                s = bytes(pre).decode()
                 log.debug('detected mountpoint', mountpoint=s)
                 return Path(s)
             case []:

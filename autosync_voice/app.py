@@ -44,7 +44,7 @@ def cli(ctx: click.Context, config: str, debug: bool) -> None:  # noqa: FBT001
     """`autosync_voice` command-line utility."""
     # Parse and store config
     config_dict = tomllib.loads(Path(config).read_text())
-    cfg = typing.cast(autosync_voice.config.Config, config_dict)
+    cfg = typing.cast('autosync_voice.config.Config', config_dict)
     cfg = autosync_voice.config.validate(cfg)
     ctx.obj = cfg
 
